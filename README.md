@@ -11,4 +11,4 @@ https://www.figma.com/file/kq3tHq8NoeHP98pyNOPnIj/?node-id=1%3A23
 
 ## API's
 https://rapidapi.com/apidojo/api/hotels4/
-https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation +"&locale=en_US
+https://hotels4.p.rapidapi.com/locations/search?query= + inputLocation + &locale=en_US
