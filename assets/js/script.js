@@ -1,5 +1,6 @@
-
-getRestaurantAPI();
+function hotelAPI(inputLocation) {
+	inputLocation = 'Atlanta';
+}
 
 function getRestaurantAPI(city, meters) {
 	const corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -16,4 +17,12 @@ function getRestaurantAPI(city, meters) {
 			console.log(response)
 		})
 
-};
+}
+
+function homeToResults(cityName) {
+	let headerEl = document.querySelector('header')
+	headerEl.innerHTML = '';
+	cityName = 'Atlanta';  //Hardcoded, should be changed to entered city name
+	document.createElement('id', 'resultsTitleEl').append(headerEl);
+	resultsTitleEl.textContent = cityName;
+}
