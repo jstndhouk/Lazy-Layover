@@ -1,4 +1,5 @@
-let inputLocation = document.querySelector();
+function hotelAPI(inputLocation){
+inputLocation = document.querySelector();
 
 fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation +"&locale=en_US", {
 	"method": "GET",
@@ -14,3 +15,14 @@ fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation +
 	console.error(err);
 });
 
+console.log('hello world')
+}
+
+
+function homeToResults(cityName) {
+	let headerEl = document.querySelector('header')
+	headerEl.innerHTML = '';
+	cityName = 'Atlanta';  //Hardcoded, should be changed to entered city name
+	document.createElement('id', 'resultsTitleEl').append(headerEl);
+	resultsTitleEl.textContent=cityName;
+}
