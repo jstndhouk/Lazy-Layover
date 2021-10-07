@@ -32,10 +32,13 @@ function getRestaurantAPI(city, meters) {
 
 }
 
-function homeToResults(cityName) {
+function cityToPage(cityName) {
 	let headerEl = document.querySelector('header')
-	headerEl.innerHTML = '';
-	cityName = 'Atlanta';  //Hardcoded, should be changed to entered city name
-	document.createElement('id', 'resultsTitleEl').append(headerEl);
+	console.log(headerEl)
+	headerEl.textContent = '';
+	//cityName = 'Atlanta';  //Hardcoded, should be changed to entered city name
+	let resultsTitleEl = document.createElement('section', 'resultsTitle');
+	resultsTitleEl.setAttribute('id', 'resultsTitle');
+	headerEl.appendChild(resultsTitleEl);
 	resultsTitleEl.textContent = cityName;
 }
