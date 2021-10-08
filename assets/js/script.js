@@ -1,3 +1,25 @@
+let homepageSubmit = document.querySelector('#getLayoverInfo');
+
+
+
+function resolveLayoverTime(city, date, layoverTime) {
+	if (layoverTime < 4) {
+		//1610 ~ 1 mile
+		console.log("layover 4");
+		meters = 1610;
+		getRestaurantAPI(city, meters);
+	} else if (layoverTime >= 4 && layoverTime < 8) {
+		//1693 ~ 10 miles
+		console.log("layover 4-8");
+		meters = 16093;
+		getRestaurantAPI(city, meters);
+	} else
+		console.log("layover 8");
+	meters = 16093;
+	getRestaurantAPI(city, meters);
+	hotelAPI(city);
+}
+
 function hotelAPI(inputLocation) {
 	inputLocation = 'Atlanta';
 	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation + "&locale=en_US", {
@@ -44,6 +66,21 @@ function cityToPage(cityName) {
 }
 
 
+homepageSubmit.addEventListener('click', function (event) {
+	event.preventDefault();
+	let cityInput = document.querySelector('#layoverCity');
+	let layoverTimeInput = document.querySelector('#layoverTime');
+	console.log("city " + cityInput.value);
+	let city = cityInput.value;
+	let layoverTime = layoverTimeInput.value;
+	resolveLayoverTime(city, layoverTime);
+	let searchObject = {
+		city: city,
+		layoverTime: layoverTime
+	};
+	localStorage.setItem('layoverSearch', JSON.stringify(searchObject));
+});
+
 function weatherGrab(cityName) {
 	let todayTemp;
 	let todayWeatherIcon;
@@ -64,6 +101,25 @@ function weatherGrab(cityName) {
 				})
 				.then(function (data) {
 					console.log(data)
+
+					todayTemp = data.current.temp;
+					todayWeatherIcon = data.current.weather[0].icon;
+					let iconUrl = 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
+					let weatherResultsEl = document.createElement('section');
+					let weatherIconEl = document.createElement('img', '');
+					weatherIconEl.setAttribute('src', iconUrl);
+					weatherIconEl.setAttribute('style', 'width:50px; height:50px')
+					let headerEl = document.querySelector('header')
+					weatherResultsEl.textContent = 'Temp: ' + todayTemp;
+					weatherIconEl.textContent = iconUrl;
+					console.log(weatherIconEl);
+
+					headerEl.append(weatherResultsEl);
+					headerEl.append(weatherIconEl)
+
+
+				})
+
 					todayTemp=data.current.temp;
 					todayWeatherIcon=data.current.weather[0].icon;
 					let iconUrl= 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
@@ -81,5 +137,6 @@ function weatherGrab(cityName) {
 					
 
 		})
+
 		})
 }
