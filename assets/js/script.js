@@ -1,3 +1,25 @@
+let homepageSubmit = document.querySelector('#getLayoverInfo');
+
+
+
+function resolveLayoverTime (city,date,layoverTime){
+	if (layoverTime < 4){
+		//1610 ~ 1 mile
+		console.log("layover 4");
+		meters = 1610;
+		getRestaurantAPI(city, meters);
+	}else if (layoverTime >= 4 && layoverTime < 8){
+		//1693 ~ 10 miles
+		console.log("layover 4-8");
+		meters = 16093;
+		getRestaurantAPI(city, meters);
+		} else
+		console.log("layover 8");
+		meters = 16093;
+		getRestaurantAPI(city, meters);
+		hotelAPI(city);
+}
+
 function hotelAPI(inputLocation) {
 	inputLocation = 'Atlanta';
 	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation + "&locale=en_US", {
@@ -42,3 +64,18 @@ function cityToPage(cityName) {
 	headerEl.appendChild(resultsTitleEl);
 	resultsTitleEl.textContent = cityName;
 }
+
+homepageSubmit.addEventListener('click', function (event){
+	event.preventDefault();
+	let cityInput = document.querySelector('#layoverCity');
+	let layoverTimeInput = document.querySelector('#layoverTime');
+	console.log("city "+ cityInput.value);
+	let city = cityInput.value;
+	let layoverTime = layoverTimeInput.value;
+	resolveLayoverTime (city, layoverTime);
+	let searchObject = {
+		city: city,
+		layoverTime: layoverTime
+	};
+	localStorage.setItem('layoverSearch', JSON.stringify(searchObject));
+});
