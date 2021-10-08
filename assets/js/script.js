@@ -66,8 +66,20 @@ function weatherGrab(cityName) {
 					console.log(data)
 					todayTemp=data.current.temp;
 					todayWeatherIcon=data.current.weather[0].icon;
-					console.log(todayTemp);
-					console.log(todayWeatherIcon);
+					let iconUrl= 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
+					let weatherResultsEl = document.createElement('section');
+					let weatherIconEl = document.createElement('img', '');
+					weatherIconEl.setAttribute('src', iconUrl);
+                    weatherIconEl.setAttribute('style', 'width:50px; height:50px')
+					let headerEl = document.querySelector('header')
+					weatherResultsEl.textContent='Temp: '+ todayTemp;
+					weatherIconEl.textContent=iconUrl;
+					console.log(weatherIconEl);
+					
+					headerEl.append(weatherResultsEl);
+					headerEl.append(weatherIconEl)
+					
+
 		})
 		})
 }
