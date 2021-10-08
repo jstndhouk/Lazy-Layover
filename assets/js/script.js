@@ -30,13 +30,30 @@ function hotelAPI(inputLocation) {
 			"x-rapidapi-key": "47dd23d239msh1ddfbdbd3bd2081p1fcc71jsn32fd8fabb7c8"
 		}
 	})
-		.then(response => {
-			console.log(response);
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				throw new console.error("FETCH ERROR");
+			}
 		})
-		.catch(err => {
-			console.error(err);
-		});
-}
+		.then(data => {
+			console.log(data);
+			// console.log(data.suggestions[1].entities[0].name);
+			let hotels = data.suggestions[1].entities
+			for (let i = 0; i < hotels.length; i++) {
+				console.log(hotels[i].name);
+				let hotelNames = hotels[i].name;
+				let hotelNamesEl = document.createElement('div');
+				hotelNamesEl.setAttribute('id', 'hotelNameResults')
+				// "hotelsDisplayEl".append(hotelNamesEl);
+				hotelNamesEl.textContent = hotelNames;
+
+
+			}
+		})
+		  .catch((error) => console.error("FETCH ERROR:", error));
+	}
 
 function getRestaurantAPI(city, meters) {
 	const corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -153,5 +170,4 @@ function cardCreationRestaurant(resultsObject) {
 
 		resultsDetails.innerHTML += cardHTML;
 	});
-
 }
