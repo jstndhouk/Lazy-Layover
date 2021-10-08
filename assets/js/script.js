@@ -32,10 +32,23 @@ function hotelAPI(inputLocation) {
 		.then(response => {
 			console.log(response);
 		})
-		.catch(err => {
-			console.error(err);
-		});
-}
+		.then(data => {
+			console.log(data);
+			// console.log(data.suggestions[1].entities[0].name);
+			let hotels = data.suggestions[1].entities
+			for (let i = 0; i < hotels.length; i++) {
+				console.log(hotels[i].name);
+				let hotelNames = hotels[i].name;
+				let hotelNamesEl = document.createElement('div');
+				hotelNamesEl.setAttribute('id', 'hotelNameResults')
+				// "hotelsDisplayEl".append(hotelNamesEl);
+				hotelNamesEl.textContent = hotelNames;
+
+
+			}
+		})
+		  .catch((error) => console.error("FETCH ERROR:", error));
+	}
 
 function getRestaurantAPI(city, meters) {
 	const corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
