@@ -23,12 +23,12 @@ function resolveLayoverTime(city, date, layoverTime) {
 function hotelAPI(inputLocation) {
 	inputLocation = 'Atlanta';
 	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation + "&locale=en_US", {
-		"method": "GET",
-		"headers": {
-			"x-rapidapi-host": "hotels4.p.rapidapi.com",
-			"x-rapidapi-key": "47dd23d239msh1ddfbdbd3bd2081p1fcc71jsn32fd8fabb7c8"
-		}
-	})
+			"method": "GET",
+			"headers": {
+				"x-rapidapi-host": "hotels4.p.rapidapi.com",
+				"x-rapidapi-key": "47dd23d239msh1ddfbdbd3bd2081p1fcc71jsn32fd8fabb7c8"
+			}
+		})
 		.then(response => {
 			console.log(response);
 		})
@@ -44,10 +44,10 @@ function getRestaurantAPI(city, meters) {
 	openNow = '&open_now=true';
 	let key = "Bearer lN5mZwh8nn27vZespEp6B0IvX4ExqQ-F01v5S84I9WD5m_eWe0uo2PgVXWSZB1u6-2JRz4wKPpdUjaCr5DvgzTlO5mdxLUZTQbItcVRYe7Puaikp76jSG8rwiUVeYXYx";
 	$.ajax(corsApiUrl + 'https://api.yelp.com/v3/businesses/search?location=' + city + "&term=restaurants&radius=" + meters + openNow, {
-		headers: {
-			'Authorization': key
-		}
-	})
+			headers: {
+				'Authorization': key
+			}
+		})
 		.done(function (response) {
 			console.log(response)
 		})
@@ -64,6 +64,7 @@ function cityToPage(cityName) {
 	headerEl.appendChild(resultsTitleEl);
 	resultsTitleEl.textContent = cityName;
 }
+
 
 homepageSubmit.addEventListener('click', function (event) {
 	event.preventDefault();
@@ -100,6 +101,7 @@ function weatherGrab(cityName) {
 				})
 				.then(function (data) {
 					console.log(data)
+
 					todayTemp = data.current.temp;
 					todayWeatherIcon = data.current.weather[0].icon;
 					let iconUrl = 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
@@ -117,5 +119,24 @@ function weatherGrab(cityName) {
 
 
 				})
+
+					todayTemp=data.current.temp;
+					todayWeatherIcon=data.current.weather[0].icon;
+					let iconUrl= 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
+					let weatherResultsEl = document.createElement('section');
+					let weatherIconEl = document.createElement('img', '');
+					weatherIconEl.setAttribute('src', iconUrl);
+                    weatherIconEl.setAttribute('style', 'width:50px; height:50px')
+					let headerEl = document.querySelector('header')
+					weatherResultsEl.textContent='Temp: '+ todayTemp;
+					weatherIconEl.textContent=iconUrl;
+					console.log(weatherIconEl);
+					
+					headerEl.append(weatherResultsEl);
+					headerEl.append(weatherIconEl)
+					
+
+		})
+
 		})
 }
