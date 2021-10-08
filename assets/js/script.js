@@ -2,33 +2,33 @@ let homepageSubmit = document.querySelector('#getLayoverInfo');
 
 
 
-function resolveLayoverTime (city,date,layoverTime){
-	if (layoverTime < 4){
+function resolveLayoverTime(city, date, layoverTime) {
+	if (layoverTime < 4) {
 		//1610 ~ 1 mile
 		console.log("layover 4");
 		meters = 1610;
 		getRestaurantAPI(city, meters);
-	}else if (layoverTime >= 4 && layoverTime < 8){
+	} else if (layoverTime >= 4 && layoverTime < 8) {
 		//1693 ~ 10 miles
 		console.log("layover 4-8");
 		meters = 16093;
 		getRestaurantAPI(city, meters);
-		} else
+	} else
 		console.log("layover 8");
-		meters = 16093;
-		getRestaurantAPI(city, meters);
-		hotelAPI(city);
+	meters = 16093;
+	getRestaurantAPI(city, meters);
+	hotelAPI(city);
 }
 
 function hotelAPI(inputLocation) {
 	inputLocation = 'Atlanta';
 	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation + "&locale=en_US", {
-			"method": "GET",
-			"headers": {
-				"x-rapidapi-host": "hotels4.p.rapidapi.com",
-				"x-rapidapi-key": "47dd23d239msh1ddfbdbd3bd2081p1fcc71jsn32fd8fabb7c8"
-			}
-		})
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-host": "hotels4.p.rapidapi.com",
+			"x-rapidapi-key": "47dd23d239msh1ddfbdbd3bd2081p1fcc71jsn32fd8fabb7c8"
+		}
+	})
 		.then(response => {
 			console.log(response);
 		})
@@ -44,10 +44,10 @@ function getRestaurantAPI(city, meters) {
 	openNow = '&open_now=true';
 	let key = "Bearer lN5mZwh8nn27vZespEp6B0IvX4ExqQ-F01v5S84I9WD5m_eWe0uo2PgVXWSZB1u6-2JRz4wKPpdUjaCr5DvgzTlO5mdxLUZTQbItcVRYe7Puaikp76jSG8rwiUVeYXYx";
 	$.ajax(corsApiUrl + 'https://api.yelp.com/v3/businesses/search?location=' + city + "&term=restaurants&radius=" + meters + openNow, {
-			headers: {
-				'Authorization': key
-			}
-		})
+		headers: {
+			'Authorization': key
+		}
+	})
 		.done(function (response) {
 			console.log(response)
 		})
@@ -65,14 +65,14 @@ function cityToPage(cityName) {
 	resultsTitleEl.textContent = cityName;
 }
 
-homepageSubmit.addEventListener('click', function (event){
+homepageSubmit.addEventListener('click', function (event) {
 	event.preventDefault();
 	let cityInput = document.querySelector('#layoverCity');
 	let layoverTimeInput = document.querySelector('#layoverTime');
-	console.log("city "+ cityInput.value);
+	console.log("city " + cityInput.value);
 	let city = cityInput.value;
 	let layoverTime = layoverTimeInput.value;
-	resolveLayoverTime (city, layoverTime);
+	resolveLayoverTime(city, layoverTime);
 	let searchObject = {
 		city: city,
 		layoverTime: layoverTime
@@ -100,22 +100,22 @@ function weatherGrab(cityName) {
 				})
 				.then(function (data) {
 					console.log(data)
-					todayTemp=data.current.temp;
-					todayWeatherIcon=data.current.weather[0].icon;
-					let iconUrl= 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
+					todayTemp = data.current.temp;
+					todayWeatherIcon = data.current.weather[0].icon;
+					let iconUrl = 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
 					let weatherResultsEl = document.createElement('section');
 					let weatherIconEl = document.createElement('img', '');
 					weatherIconEl.setAttribute('src', iconUrl);
-                    weatherIconEl.setAttribute('style', 'width:50px; height:50px')
+					weatherIconEl.setAttribute('style', 'width:50px; height:50px')
 					let headerEl = document.querySelector('header')
-					weatherResultsEl.textContent='Temp: '+ todayTemp;
-					weatherIconEl.textContent=iconUrl;
+					weatherResultsEl.textContent = 'Temp: ' + todayTemp;
+					weatherIconEl.textContent = iconUrl;
 					console.log(weatherIconEl);
-					
+
 					headerEl.append(weatherResultsEl);
 					headerEl.append(weatherIconEl)
-					
 
-		})
+
+				})
 		})
 }
