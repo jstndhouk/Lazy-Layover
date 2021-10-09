@@ -1,3 +1,19 @@
+const successCallback = (position) => {
+	console.log(position);
+};
+
+const errorCallback = (error) => {
+	console.log(error);
+
+}
+
+
+
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+
+
+
 function hotelAPI(inputLocation) {
 	inputLocation = 'Atlanta';
 	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation + "&locale=en_US", {
