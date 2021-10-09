@@ -2,3 +2,34 @@
     font-size:50px;
 
 }
+
+#header {
+
+    font-size:23px;
+    font-weight:Normal;
+    text-align: center;
+}
+
+#center{
+    text-align:center;
+}
+
+.title {
+    padding-inline-start: 70px;
+}
+
+.boxes{
+    padding-block: 15px;
+}
+
+.searchbtn {
+    padding-block: 10px;
+}
+
+.my-card {
+    display: none;
+    height: 100px;
+    width: 300px;
+  }
+
+  
