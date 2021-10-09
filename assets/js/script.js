@@ -3,7 +3,7 @@ let resultsDetails = document.querySelector('#resultsDetailsList');
 
 
 
-function resolveLayoverTime(city, date, layoverTime) {
+function resolveLayoverTime(city, layoverTime) {
 	if (layoverTime < 4) {
 		//1610 ~ 1 mile
 		console.log("layover 4");
@@ -94,6 +94,7 @@ homepageSubmit.addEventListener('click', function (event) {
 	let layoverTimeInput = document.querySelector('#layoverTime');
 	console.log("city " + cityInput.value);
 	let city = cityInput.value;
+	console.log("inputVal "+layoverTimeInput.value)
 	let layoverTime = layoverTimeInput.value;
 	resolveLayoverTime(city, layoverTime);
 	let searchObject = {
