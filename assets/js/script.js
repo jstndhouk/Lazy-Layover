@@ -1,6 +1,13 @@
 
+let coords = {}
 const successCallback = (position) => {
 	console.log(position);
+	
+	coords={
+		lat: position.coords.longitude,
+		lon: position.coords.latitude
+	}
+	console.log(coords);
 };
 
 const errorCallback = (error) => {
@@ -11,6 +18,8 @@ const errorCallback = (error) => {
 
 
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+
 
 
 
