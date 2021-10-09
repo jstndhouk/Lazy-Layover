@@ -27,9 +27,15 @@
 }
 
 .my-card {
-    display: none;
+    display: all;
     height: 100px;
-    width: 300px;
+    width: 150px;
+    display:flex;
+    flex-direction: column-reverse;
   }
 
-  
+.cards {
+    
+
+
+}
