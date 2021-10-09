@@ -27,8 +27,8 @@ navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 let homepageSubmit = document.querySelector('#getLayoverInfo');
 let resultsDetails = document.querySelector('#resultsDetailsList');
-
-
+let cityInput = document.querySelector('#layoverCity');
+let resultsCards = document.querySelector('.my-card')
 
 function resolveLayoverTime(city, layoverTime) {
 	if (layoverTime < 4) {
@@ -49,9 +49,8 @@ function resolveLayoverTime(city, layoverTime) {
 }
 
 
-function hotelAPI(inputLocation) {
-	inputLocation = 'Atlanta';
-	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + inputLocation + "&locale=en_US", {
+function hotelAPI(cityInput) {
+	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + cityInput + "&locale=en_US", {
 		"method": "GET",
 		"headers": {
 			"x-rapidapi-host": "hotels4.p.rapidapi.com",
@@ -73,11 +72,13 @@ function hotelAPI(inputLocation) {
 				console.log(hotels[i].name);
 				let hotelNames = hotels[i].name;
 				let hotelNamesEl = document.createElement('div');
-				hotelNamesEl.setAttribute('id', 'hotelNameResults')
-				// "hotelsDisplayEl".append(hotelNamesEl);
+				hotelNamesEl.setAttribute('id', 'hotelNameResults');
+				resultsCards.append(hotelNamesEl);
 				hotelNamesEl.textContent = hotelNames;
-
-
+				let hotelStockImg = document.createElement("img");
+				// hotelStockImg.setAttribute('src', 'need to figure out what stock images to use');
+				// hotelStockImg.setAttribute('href', 'some url link'); will probably link to somehwere to find more hotels would be best (need to also make sure the image or card is a link)
+				resultsCards.append(hotelStockImg);
 			}
 		})
 		  .catch((error) => console.error("FETCH ERROR:", error));
@@ -120,7 +121,7 @@ function cityToPage(cityName) {
 
 homepageSubmit.addEventListener('click', function (event) {
 	event.preventDefault();
-	let cityInput = document.querySelector('#layoverCity');
+	// let cityInput = document.querySelector('#layoverCity'); moving to global scope bc needed in hotelAPI also - Baylor 
 	let layoverTimeInput = document.querySelector('#layoverTime');
 	console.log("city " + cityInput.value);
 	let city = cityInput.value;
