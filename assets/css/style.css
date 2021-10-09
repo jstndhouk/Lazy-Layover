@@ -28,7 +28,7 @@
 
 .my-card {
 
-    display: all;
+    display: none;
     height: 100px;
     width: 150px;
     display:flex;
