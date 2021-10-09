@@ -1,3 +1,21 @@
+
+const successCallback = (position) => {
+	console.log(position);
+};
+
+const errorCallback = (error) => {
+	console.log(error);
+
+}
+
+
+
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+
+
+
+
 let homepageSubmit = document.querySelector('#getLayoverInfo');
 let resultsDetails = document.querySelector('#resultsDetailsList');
 
@@ -20,6 +38,7 @@ function resolveLayoverTime(city, layoverTime) {
 	getRestaurantAPI(city, meters);
 	hotelAPI(city);
 }
+
 
 function hotelAPI(inputLocation) {
 	inputLocation = 'Atlanta';
