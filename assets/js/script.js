@@ -99,14 +99,15 @@ function populateResultsPage() {
 }
 
 function cityToPage(cityName) {
-	let headerEl = document.querySelector('header')
+	let headerEl = document.querySelector('#header')
+	let enterCityEl = document.querySelector('#center')
 	console.log(headerEl)
 	headerEl.textContent = '';
 	//cityName = 'Atlanta';  //Hardcoded, should be changed to entered city name
 	let resultsTitleEl = document.createElement('section', 'resultsTitle');
-	resultsTitleEl.setAttribute('id', 'resultsTitle');
 	headerEl.appendChild(resultsTitleEl);
 	resultsTitleEl.textContent = cityName;
+
 }
 
 
@@ -124,6 +125,8 @@ homepageSubmit.addEventListener('click', function (event) {
 		layoverTime: layoverTime
 	};
 	localStorage.setItem('layoverSearch', JSON.stringify(searchObject));
+	cityToPage(city)
+	weatherGrab(city)
 });
 
 function weatherGrab(cityName) {
@@ -154,7 +157,7 @@ function weatherGrab(cityName) {
 					let weatherIconEl = document.createElement('img', '');
 					weatherIconEl.setAttribute('src', iconUrl);
 					weatherIconEl.setAttribute('style', 'width:50px; height:50px')
-					let headerEl = document.querySelector('header')
+					let headerEl = document.querySelector('#header')
 					weatherResultsEl.textContent = 'Temp: ' + todayTemp;
 					weatherIconEl.textContent = iconUrl;
 					console.log(weatherIconEl);
