@@ -126,6 +126,7 @@ function cityToPage(cityName) {
 	headerEl.textContent = '';
 	//cityName = 'Atlanta';  //Hardcoded, should be changed to entered city name
 	let resultsTitleEl = document.createElement('section', 'resultsTitle');
+	resultsTitleEl.setAttribute('style','color:#ff5252');
 	headerEl.appendChild(resultsTitleEl);
 	resultsTitleEl.textContent = cityName;
 }
@@ -149,6 +150,7 @@ homepageSubmit.addEventListener('click', function (event) {
 	const clearMain = document.querySelector('#searchCriteria');
 	clearMain.innerHTML = '';
 	cityToPage(city);
+	previousCitiesButton();
 });
 
 function weatherGrab(cityName) {
@@ -179,11 +181,12 @@ function weatherGrab(cityName) {
 					todayWeatherIcon = data.current.weather[0].icon;
 					let iconUrl = 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
 					let weatherResultsEl = document.createElement('section');
+					weatherResultsEl.setAttribute('style','color:#ff5252');
 					let weatherIconEl = document.createElement('img', '');
 					weatherIconEl.setAttribute('src', iconUrl);
-					weatherIconEl.setAttribute('style', 'width:50px; height:50px; align-self:center')
+					weatherIconEl.setAttribute('style', 'width:100px; height:100px; align-self:center')
 					let headerEl = document.querySelector('#header')
-					weatherResultsEl.textContent = 'Temp: ' + todayTemp;
+					weatherResultsEl.textContent = 'Temp: ' + todayTemp + " F";
 					weatherIconEl.textContent = iconUrl;
 					console.log(weatherIconEl);
 					headerEl.append(weatherResultsEl);
