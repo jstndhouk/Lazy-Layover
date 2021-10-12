@@ -8,8 +8,8 @@ let resultsCards = document.querySelector('.my-card')
 let coords = {}
 const successCallback = (position) => {
 	console.log(position);
-	
-	coords={
+
+	coords = {
 		lat: position.coords.longitude,
 		lon: position.coords.latitude
 	}
@@ -44,12 +44,12 @@ function resolveLayoverTime(city, layoverTime) {
 
 function hotelAPI(cityInput) {
 	fetch("https://hotels4.p.rapidapi.com/locations/search?query=" + cityInput + "&locale=en_US", {
-		"method": "GET",
-		"headers": {
-			"x-rapidapi-host": "hotels4.p.rapidapi.com",
-			"x-rapidapi-key": "47dd23d239msh1ddfbdbd3bd2081p1fcc71jsn32fd8fabb7c8"
-		}
-	})
+			"method": "GET",
+			"headers": {
+				"x-rapidapi-host": "hotels4.p.rapidapi.com",
+				"x-rapidapi-key": "47dd23d239msh1ddfbdbd3bd2081p1fcc71jsn32fd8fabb7c8"
+			}
+		})
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
@@ -74,18 +74,18 @@ function hotelAPI(cityInput) {
 				resultsDetails.append(hotelStockImg);
 			}
 		})
-		  .catch((error) => console.error("FETCH ERROR:", error));
-	}
+		.catch((error) => console.error("FETCH ERROR:", error));
+}
 
 function getRestaurantAPI(city, meters) {
 	const corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
 	openNow = '&open_now=true';
 	let key = "Bearer lN5mZwh8nn27vZespEp6B0IvX4ExqQ-F01v5S84I9WD5m_eWe0uo2PgVXWSZB1u6-2JRz4wKPpdUjaCr5DvgzTlO5mdxLUZTQbItcVRYe7Puaikp76jSG8rwiUVeYXYx";
 	$.ajax(corsApiUrl + 'https://api.yelp.com/v3/businesses/search?location=' + city + "&term=restaurants&radius=" + meters + openNow, {
-		headers: {
-			'Authorization': key
-		}
-	})
+			headers: {
+				'Authorization': key
+			}
+		})
 		.done(function (response) {
 			//uncomment out the below if you hit the threshold of 50 to test one card at least
 			// response = JSON.parse('{"businesses": [{"id": "GJxFtnTqTiokFedNrW9iDQ", "alias": "atlanta-breakfast-club-atlanta", "name": "Atlanta Breakfast Club", "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/cGL6b-pSEqzaNrF32gXd2w/o.jpg", "is_closed": false, "url": "https://www.yelp.com/biz/atlanta-breakfast-club-atlanta?adjust_creative=veZxpMvRQzCZKsxie8vKUw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=veZxpMvRQzCZKsxie8vKUw", "review_count": 4339, "categories": [{"alias": "southern", "title": "Southern"}, {"alias": "breakfast_brunch", "title": "Breakfast & Brunch"}, {"alias": "tradamerican", "title": "American (Traditional)"}], "rating": 4.5, "coordinates": {"latitude": 33.7649, "longitude": -84.39546}, "transactions": ["delivery", "pickup"], "price": "$$", "location": {"address1": "249 Ivan Allen Jr Blvd", "address2": "", "address3": "", "city": "Atlanta", "zip_code": "30313", "country": "US", "state": "GA", "display_address": ["249 Ivan Allen Jr Blvd", "Atlanta, GA 30313"]}, "phone": "+14704283825", "display_phone": "(470) 428-3825", "distance": 5735.1550054639665}]}');
@@ -119,7 +119,9 @@ homepageSubmit.addEventListener('click', function (event) {
 	let layoverTimeInput = document.querySelector('#layoverTime');
 	console.log("city " + cityInput.value);
 	let city = cityInput.value;
-	console.log("inputVal "+layoverTimeInput.value)
+	weatherGrab(city)
+	//populating the cards for the results page must go below this weatherGrab function on the line above!
+	console.log("inputVal " + layoverTimeInput.value)
 	let layoverTime = layoverTimeInput.value;
 	resolveLayoverTime(city, layoverTime);
 	let searchObject = {
@@ -128,8 +130,7 @@ homepageSubmit.addEventListener('click', function (event) {
 	};
 	localStorage.setItem('layoverSearch', JSON.stringify(searchObject));
 	cityToPage(city)
-	weatherGrab(city)
-});
+	});
 
 function weatherGrab(cityName) {
 	let todayTemp;
@@ -144,6 +145,10 @@ function weatherGrab(cityName) {
 			let latcoord = data.coord.lat;
 			let loncoord = data.coord.lon;
 			let todaysOneUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latcoord + '&lon=' + loncoord + '&exclude={part}&appid=10265beafaf4ca91897568ef6f7efa26&units=imperial';
+			let inputCityEl=document.querySelector('.boxes');
+			let inputHourEl=document.querySelector('.row');
+			inputCityEl.innerHTML='';
+			inputHourEl.innerHTML='';
 			//fetches weather data
 			fetch(todaysOneUrl)
 				.then(function (response) {
@@ -151,22 +156,19 @@ function weatherGrab(cityName) {
 				})
 				.then(function (data) {
 					console.log(data)
-
 					todayTemp = data.current.temp;
 					todayWeatherIcon = data.current.weather[0].icon;
 					let iconUrl = 'http://openweathermap.org/img/wn/' + todayWeatherIcon + '@2x.png';
 					let weatherResultsEl = document.createElement('section');
 					let weatherIconEl = document.createElement('img', '');
 					weatherIconEl.setAttribute('src', iconUrl);
-					weatherIconEl.setAttribute('style', 'width:50px; height:50px')
+					weatherIconEl.setAttribute('style', 'width:50px; height:50px; align-self:center')
 					let headerEl = document.querySelector('#header')
 					weatherResultsEl.textContent = 'Temp: ' + todayTemp;
 					weatherIconEl.textContent = iconUrl;
 					console.log(weatherIconEl);
-
 					headerEl.append(weatherResultsEl);
 					headerEl.append(weatherIconEl)
-
 
 				})
 		})
@@ -178,21 +180,21 @@ function cardCreationRestaurant(resultsObject) {
 		let price = business.price;
 		let name = business.name;
 		let phone = business.phone;
-		let distance = Math.round(business.distance*0.000621371);
+		let distance = Math.round(business.distance * 0.000621371);
 		let img = business.image_url;
 		let yelpURL = business.url;
-		let cardHTML = '<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src="'+img+'">';
-		cardHTML += '<span class="card-title">'+name+'</span></div><div class="card-content">';
+		let cardHTML = '<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src="' + img + '">';
+		cardHTML += '<span class="card-title">' + name + '</span></div><div class="card-content">';
 		if (phone != null) {
-			cardHTML += '<p class="phone">'+phone+'</p>';
+			cardHTML += '<p class="phone">' + phone + '</p>';
 		}
 		if (price != null) {
-			cardHTML += '<p class="price">'+price+'</p>';
+			cardHTML += '<p class="price">' + price + '</p>';
 		}
 		if (distance != null) {
-			cardHTML += '<p class="distance">'+distance+' mi</p>';
+			cardHTML += '<p class="distance">' + distance + ' mi</p>';
 		}
-		cardHTML +=	'</div><div class="card-action"><a href="'+yelpURL+'">Go to Yelp</a></div></div></div></div>';
+		cardHTML += '</div><div class="card-action"><a href="' + yelpURL + '">Go to Yelp</a></div></div></div></div>';
 
 		resultsDetails.innerHTML += cardHTML;
 	});
