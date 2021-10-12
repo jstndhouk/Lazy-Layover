@@ -1,3 +1,5 @@
+//Please put all global variables at the top of the js file
+
 let homepageSubmit = document.querySelector('#getLayoverInfo');
 let resultsDetails = document.querySelector('#resultsDetailsList');
 let cityInput = document.querySelector('#layoverCity');
@@ -19,16 +21,7 @@ const errorCallback = (error) => {
 
 }
 
-
-
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-
-
-
-
-
-
-
 
 function resolveLayoverTime(city, layoverTime) {
 	if (layoverTime < 4) {
