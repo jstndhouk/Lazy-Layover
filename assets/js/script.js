@@ -35,8 +35,9 @@ function previousCitiesButton() {
 	};
 	document.querySelector('.cityButton').addEventListener('click', function (event) {
 		event.preventDefault();
+		const clearMain = document.querySelector('#searchCriteria');
+		clearMain.innerHTML = '';
 		weatherGrab(city);
-		console.log("from storage " + layoverTime);
 		resolveLayoverTime(city, layoverTime);
 		cityToPage(city);
 	});
