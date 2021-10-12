@@ -23,6 +23,28 @@ const errorCallback = (error) => {
 
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
+function previousCities(){
+	// JSON.parse(localStorage.getItem("studentGrade"));
+    let searchObject= JSON.parse(localStorage.getItem("layoverSearch"));
+	 console.log(searchObject);
+// check local storage 
+if (searchObject = null ){
+return;}
+else {
+	//define button define parameters of button fetch and parse object  
+	let city = searchObject.city
+	let layoverTime= searchObject.layoverTime
+
+
+let previousSearch = document.querySelector("previousSearch")
+console.log(previousSearch)
+
+
+	//.addEventListener('click', function (event)
+}
+}
+previousCities();
+
 function resolveLayoverTime(city, layoverTime) {
 	if (layoverTime < 4) {
 		//1610 ~ 1 mile
