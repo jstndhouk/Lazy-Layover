@@ -1,8 +1,10 @@
 //Please put all global variables at the top of the js file
+
 let homepageSubmit = document.querySelector('#getLayoverInfo');
 let resultsDetails = document.querySelector('#resultsDetailsList');
 let cityInput = document.querySelector('#layoverCity');
 let resultsCards = document.querySelector('.my-card')
+
 let coords = {}
 const successCallback = (position) => {
 	console.log(position);
@@ -79,19 +81,19 @@ function hotelAPI(cityInput) {
 		})
 		.then(data => {
 			console.log(data);
-			// console.log(data.suggestions[1].entities[0].name);
+			console.log(data.suggestions[1].entities[0].name);
 			let hotels = data.suggestions[1].entities
 			for (let i = 0; i < hotels.length; i++) {
 				console.log(hotels[i].name);
 				let hotelNames = hotels[i].name;
 				let hotelNamesEl = document.createElement('div');
 				hotelNamesEl.setAttribute('id', 'hotelNameResults');
-				resultsCards.append(hotelNamesEl);
+				resultsDetails.append(hotelNamesEl);
 				hotelNamesEl.textContent = hotelNames;
 				let hotelStockImg = document.createElement("img");
-				// hotelStockImg.setAttribute('src', 'need to figure out what stock images to use');
-				// hotelStockImg.setAttribute('href', 'some url link'); will probably link to somehwere to find more hotels would be best (need to also make sure the image or card is a link)
-				resultsCards.append(hotelStockImg);
+				hotelStockImg.setAttribute('src', '.assets/images/stockhotelimg.jpg');
+				hotelStockImg.setAttribute('href', 'google.com/search?q=' + hotelNames);
+				resultsDetails.append(hotelStockImg);
 			}
 		})
 		  .catch((error) => console.error("FETCH ERROR:", error));
@@ -121,14 +123,15 @@ function populateResultsPage() {
 }
 
 function cityToPage(cityName) {
-	let headerEl = document.querySelector('header')
+	let headerEl = document.querySelector('#header')
+	let enterCityEl = document.querySelector('#center')
 	console.log(headerEl)
 	headerEl.textContent = '';
 	//cityName = 'Atlanta';  //Hardcoded, should be changed to entered city name
 	let resultsTitleEl = document.createElement('section', 'resultsTitle');
-	resultsTitleEl.setAttribute('id', 'resultsTitle');
 	headerEl.appendChild(resultsTitleEl);
 	resultsTitleEl.textContent = cityName;
+
 }
 
 
@@ -146,6 +149,8 @@ homepageSubmit.addEventListener('click', function (event) {
 		layoverTime: layoverTime
 	};
 	localStorage.setItem('layoverSearch', JSON.stringify(searchObject));
+	cityToPage(city)
+	weatherGrab(city)
 });
 
 function weatherGrab(cityName) {
@@ -176,7 +181,7 @@ function weatherGrab(cityName) {
 					let weatherIconEl = document.createElement('img', '');
 					weatherIconEl.setAttribute('src', iconUrl);
 					weatherIconEl.setAttribute('style', 'width:50px; height:50px')
-					let headerEl = document.querySelector('header')
+					let headerEl = document.querySelector('#header')
 					weatherResultsEl.textContent = 'Temp: ' + todayTemp;
 					weatherIconEl.textContent = iconUrl;
 					console.log(weatherIconEl);
