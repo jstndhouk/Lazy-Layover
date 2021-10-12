@@ -35,8 +35,9 @@ function previousCitiesButton() {
 	};
 	document.querySelector('.cityButton').addEventListener('click', function (event) {
 		event.preventDefault();
+		const clearMain = document.querySelector('#searchCriteria');
+		clearMain.innerHTML = '';
 		weatherGrab(city);
-		console.log("from storage " + layoverTime);
 		resolveLayoverTime(city, layoverTime);
 		cityToPage(city);
 	});
@@ -95,7 +96,7 @@ function hotelAPI(cityInput) {
 				cardHTML += '<img src="./assets/images/stockHotelIMG.jpeg">';
 				cardHTML += '<span class="card-title">'+hotelNames+'</span>';
 				cardHTML += '</div><div class="card-content"><p></p></div>';
-				cardHTML += '<div class="card-action"><a href="google.com/search?q='+hotelNames+'">'+hotelNames+' Details</a></div></div></div></div>';
+				cardHTML += '<div class="card-action"><a href="https://www.google.com/search?q='+hotelNames+'">'+hotelNames+' Details</a></div></div></div></div>';
 			  hotelResults.innerHTML += cardHTML;
 			}
 		})
@@ -116,13 +117,6 @@ function getRestaurantAPI(city, meters) {
 			// response = JSON.parse('{"businesses": [{"id": "GJxFtnTqTiokFedNrW9iDQ", "alias": "atlanta-breakfast-club-atlanta", "name": "Atlanta Breakfast Club", "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/cGL6b-pSEqzaNrF32gXd2w/o.jpg", "is_closed": false, "url": "https://www.yelp.com/biz/atlanta-breakfast-club-atlanta?adjust_creative=veZxpMvRQzCZKsxie8vKUw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=veZxpMvRQzCZKsxie8vKUw", "review_count": 4339, "categories": [{"alias": "southern", "title": "Southern"}, {"alias": "breakfast_brunch", "title": "Breakfast & Brunch"}, {"alias": "tradamerican", "title": "American (Traditional)"}], "rating": 4.5, "coordinates": {"latitude": 33.7649, "longitude": -84.39546}, "transactions": ["delivery", "pickup"], "price": "$$", "location": {"address1": "249 Ivan Allen Jr Blvd", "address2": "", "address3": "", "city": "Atlanta", "zip_code": "30313", "country": "US", "state": "GA", "display_address": ["249 Ivan Allen Jr Blvd", "Atlanta, GA 30313"]}, "phone": "+14704283825", "display_phone": "(470) 428-3825", "distance": 5735.1550054639665}]}');
 			cardCreationRestaurant(response);
 		});
-}
-
-function populateResultsPage() {
-	let clearMain = document.querySelector('#searchCriteria');
-	clearMain.textContent = '';
-	cityToPage(cityName);
-	cardCreationRestaurant();
 }
 
 function cityToPage(cityName) {
@@ -152,6 +146,8 @@ homepageSubmit.addEventListener('click', function (event) {
 		layoverTime: layoverTime
 	};
 	localStorage.setItem('layoverSearch', JSON.stringify(searchObject));
+	const clearMain = document.querySelector('#searchCriteria');
+	clearMain.innerHTML = '';
 	cityToPage(city);
 });
 
