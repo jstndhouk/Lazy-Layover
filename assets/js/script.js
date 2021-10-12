@@ -1,3 +1,7 @@
+let homepageSubmit = document.querySelector('#getLayoverInfo');
+let resultsDetails = document.querySelector('#resultsDetailsList');
+let cityInput = document.querySelector('#layoverCity');
+let resultsCards = document.querySelector('.my-card')
 
 let coords = {}
 const successCallback = (position) => {
@@ -25,10 +29,6 @@ navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 
 
-let homepageSubmit = document.querySelector('#getLayoverInfo');
-let resultsDetails = document.querySelector('#resultsDetailsList');
-let cityInput = document.querySelector('#layoverCity');
-let resultsCards = document.querySelector('.my-card')
 
 function resolveLayoverTime(city, layoverTime) {
 	if (layoverTime < 4) {
@@ -66,19 +66,19 @@ function hotelAPI(cityInput) {
 		})
 		.then(data => {
 			console.log(data);
-			// console.log(data.suggestions[1].entities[0].name);
+			console.log(data.suggestions[1].entities[0].name);
 			let hotels = data.suggestions[1].entities
 			for (let i = 0; i < hotels.length; i++) {
 				console.log(hotels[i].name);
 				let hotelNames = hotels[i].name;
 				let hotelNamesEl = document.createElement('div');
 				hotelNamesEl.setAttribute('id', 'hotelNameResults');
-				resultsCards.append(hotelNamesEl);
+				resultsDetails.append(hotelNamesEl);
 				hotelNamesEl.textContent = hotelNames;
 				let hotelStockImg = document.createElement("img");
-				// hotelStockImg.setAttribute('src', 'need to figure out what stock images to use');
-				// hotelStockImg.setAttribute('href', 'some url link'); will probably link to somehwere to find more hotels would be best (need to also make sure the image or card is a link)
-				resultsCards.append(hotelStockImg);
+				hotelStockImg.setAttribute('src', '.assets/images/stockhotelimg.jpg');
+				hotelStockImg.setAttribute('href', 'google.com/search?q=' + hotelNames);
+				resultsDetails.append(hotelStockImg);
 			}
 		})
 		  .catch((error) => console.error("FETCH ERROR:", error));
