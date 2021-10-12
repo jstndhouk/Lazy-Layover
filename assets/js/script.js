@@ -38,7 +38,10 @@ let previousSearch = document.querySelector("previousSearch")
 console.log(previousSearch)
 
 
+let prevbtn = document.createElement("BUTTON")
 	//.addEventListener('click', function (event)
+	prevbtn.innerHTML = "Previous Searches";                   // Insert text
+document.body.appendChild("#previousSearch");               // Append <button> to <body> 
 }
 }
 previousCities();
