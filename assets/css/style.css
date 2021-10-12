@@ -11,6 +11,7 @@
 .row {
     display: flex;
     justify-content: center;
+   
 }
 
 .searchbtn {
@@ -47,6 +48,14 @@
     display:flex;
     justify-content: center;
     flex-direction: column;
+    
 }
 
+nav{
+    display:flex;
+}
+
+.centerIt{
+    justify-content: center!important; 
+}
 
