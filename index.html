@@ -1,97 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
- 
-        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <title>Lazy Layover</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <title>Lazy Layover</title>
 </head>
 
-<header>
-
-
-  <nav>
-    <div>
-    <div class= "title">
-      <a href="./index.html" class="brand-logo">Lazy Layover</a>
-    </div>
-    </div>
-  </nav>
-    
-      </header>
 <body>
-   
-
-    <h1 id= "header" >~Make the best of your travel time~</h1>
-    
-    <div id="center" class="boxes"> <label class="mdc-text-field mdc-text-field--outlined">
-      <span class="mdc-notched-outline">
-        <span class="mdc-notched-outline__leading"></span>
-        <span class="mdc-notched-outline__notch">
-          <span class="mdc-floating-label" id="my-label-id" id="center" ></span>
-        </span>
-        <span class="mdc-notched-outline__trailing"></span>
-      </span>
-      <!-- Need the id to be layoverCity -->
-      <input type="text" id="layoverCity" class="mdc-text-field__input" aria-labelledby="my-label-id">
+  <header>
+    <nav>
       <div>
-        <div class="mdc-text-field-helper-line">
-          <div class="mdc-text-field-helper-text--persistent" id="my-helper-id"  aria-hidden="true">Layover City</div>
-        </div>
+        <a href="./index.html" class="brand-logo">Lazy Layover</a>
       </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1 id="header">~Make the best of your travel time~</h1>
+    <div id="center" class="boxes">
+      <label class="mdc-text-field mdc-text-field--outlined">
+        <span class="mdc-notched-outline">
+          <span class="mdc-notched-outline__leading"></span>
+          <span class="mdc-notched-outline__notch">
+            <span class="mdc-floating-label" id="my-label-id" id="center"></span>
+          </span>
+          <span class="mdc-notched-outline__trailing"></span>
+        </span>
+        <!-- Need the id to be layoverCity -->
+        <input type="text" id="layoverCity" class="mdc-text-field__input" aria-labelledby="my-label-id">
+        <div>
+          <div class="mdc-text-field-helper-line">
+            <div class="mdc-text-field-helper-text--persistent" id="my-helper-id" aria-hidden="true">Layover City</div>
+          </div>
+        </div>
     </div>
     </label>
-   
-  
-    <div id="center" class="row"> <label class="mdc-text-field mdc-text-field--outlined">
-      <span class="mdc-notched-outline">
-        <span class="mdc-notched-outline__leading"></span>
-        <span class="mdc-notched-outline__notch">
-          <span class="mdc-floating-label" id="my-label-id" id="center" ></span>
-        </span>
-        <span class="mdc-notched-outline__trailing"></span>
-      </span>
-      <!-- Need the id to be layoverTime -->
-      <input type="text" id="layoverTime" class="mdc-text-field__input" aria-labelledby="my-label-id">
-      <div>
-        <div class="mdc-text-field-helper-line">
-          <div class="mdc-text-field-helper-text--persistent" id="my-helper-id" aria-hidden="true">Duration (Hours)</div>
-        </div>
-      </div>
-    </label>
 
+    <div id="center" class="row">
+      <label class="mdc-text-field mdc-text-field--outlined">
+        <span class="mdc-notched-outline">
+          <span class="mdc-notched-outline__leading"></span>
+          <span class="mdc-notched-outline__notch">
+            <span class="mdc-floating-label" id="my-label-id" id="center"></span>
+          </span>
+          <span class="mdc-notched-outline__trailing"></span>
+        </span>
+        <!-- Need the id to be layoverTime -->
+        <input type="text" id="layoverTime" class="mdc-text-field__input" aria-labelledby="my-label-id">
+        <div>
+          <div class="mdc-text-field-helper-line">
+            <div class="mdc-text-field-helper-text--persistent" id="my-helper-id" aria-hidden="true">Duration (Hours)
+            </div>
+          </div>
+        </div>
+      </label>
+    </div>
+    <section id='searchCriteria'>
+      <div><a href='https://cors-anywhere.herokuapp.com/' target="_blank">Please click here to temporarily use Yelp</a>
+      </div>
       <div class="searchbtn">
         <!-- Please keep the id here, it drives the click event -->
         <button class="btn waves-effect waves-light" id="getLayoverInfo" type="submit" name="action">Submit
           <i class="material-icons right">send</i>
         </button>
-        <div id="previousSearch"> </div>
       </div>
-       <div id="hotelNameResults"> 
-       </div>
-       <div id="resultsDetailsList"> 
-       </div>
+      <div id="previousSearch"></div>
+    </section>
+    <div id="hotelNameResults"></div>
+    <div id="resultsDetailsList"></div>
+  </main>
+  <footer>
+    <div id=footer></div>
+  </footer>
 
-    
-            
 </body>
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="./assets/js/script.js"></script>
 
 </html>
