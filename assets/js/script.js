@@ -4,6 +4,7 @@ let hotelResults = document.querySelector('#hotelNameResults');
 let resultsDetails = document.querySelector('#resultsDetailsList');
 let cityInput = document.querySelector('#layoverCity');
 let resultsCards = document.querySelector('.my-card')
+let previousSearchEl=document.querySelector('#previousSearch')
 
 //Disabling fetching the users location for this iteration due to needing additional calls to resolve the lon/lat
 // let coords = {}
@@ -24,22 +25,28 @@ let resultsCards = document.querySelector('.my-card')
 function previousCitiesButton() {
 	let searchObject = JSON.parse(localStorage.getItem("layoverSearch"));
 	console.log(searchObject);
-	let city = searchObject.city;
-	let layoverTime = searchObject.layoverTime;
 	// check local storage 
-	if (searchObject != null) {
+	
+	if (searchObject !== null) {
+		let city = searchObject.city;
+		let layoverTime = searchObject.layoverTime;
 		//define button define parameters of button fetch and parse object 
 		let previousSearch = document.querySelector("#previousSearch");
 		console.log(previousSearch);
 		previousSearch.innerHTML = '<a class="waves-effect waves-light btn cityButton" id="' + city + '">' + city + ' ' + layoverTime + ' hrs<i class="material-icons left">compare_arrows</i></a>';
 	};
-	document.querySelector('.cityButton').addEventListener('click', function (event) {
+		document.querySelector('.cityButton').addEventListener('click', function (event) {
+		if (searchObject !== null){
+			let city = searchObject.city;
+			let layoverTime = searchObject.layoverTime;
+			weatherGrab(city);
+			resolveLayoverTime(city, layoverTime);
+			cityToPage(city);
+		}
 		event.preventDefault();
 		const clearMain = document.querySelector('#searchCriteria');
 		clearMain.innerHTML = '';
-		weatherGrab(city);
-		resolveLayoverTime(city, layoverTime);
-		cityToPage(city);
+		
 	});
 };
 
@@ -150,7 +157,6 @@ homepageSubmit.addEventListener('click', function (event) {
 	const clearMain = document.querySelector('#searchCriteria');
 	clearMain.innerHTML = '';
 	cityToPage(city);
-	previousCitiesButton();
 });
 
 function weatherGrab(cityName) {
