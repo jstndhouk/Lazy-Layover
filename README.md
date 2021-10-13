@@ -26,5 +26,5 @@ https://api.yelp.com/v3/businesses/
 ## Deployed Application
 https://jstndhouk.github.io/Lazy-Layover/
 
-##Google Slides Presentation
+## Google Slides Presentation
 https://docs.google.com/presentation/d/1ykE1YDDCelvTbCK5K6aRfUTHsWjp8mkTVNwlkFrrKrc/edit?usp=sharing
