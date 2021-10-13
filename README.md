@@ -22,3 +22,9 @@ https://www.youtube.com/watch?v=0Sy14hX8T-A&t=827s
 https://rapidapi.com/apidojo/api/hotels4/
 https://hotels4.p.rapidapi.com/locations/
 https://api.yelp.com/v3/businesses/
+
+## Deployed Application
+https://jstndhouk.github.io/Lazy-Layover/
+
+##Google Slides Presentation
+https://docs.google.com/presentation/d/1ykE1YDDCelvTbCK5K6aRfUTHsWjp8mkTVNwlkFrrKrc/edit?usp=sharing
